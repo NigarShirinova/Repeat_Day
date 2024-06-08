@@ -47,19 +47,19 @@ class Program
                         groupServices.UpdateGroup(course);
                         break;
                     case (int)Menu.AddStudent:
-                        studentServices.AddStudent();
+                        studentServices.AddStudent(course);
                         break;
                     case (int)Menu.DeleteStudent:
-                        studentServices.RemoveStudent();
+                        studentServices.RemoveStudent(course);
                         break;
                     case (int)Menu.UpdateStudent:
-                        studentServices.EditStudentInGroup();
+                        studentServices.EditStudentInGroup(course);
                         break;
                     case (int)Menu.ShowStudentsInGroup:
-                        studentServices.ViewStudentsInGroup();
+                        studentServices.ViewStudentsInGroup(course);
                         break;
                     case (int)Menu.ShowStudentsInCourse:
-                        studentServices.ViewAllStudentsInCourse();
+                        studentServices.ViewAllStudentsInCourse(course);
                         break;
                     case (int)Menu.Exit:
                         flag = false;

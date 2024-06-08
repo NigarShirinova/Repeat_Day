@@ -11,8 +11,8 @@ namespace task1
     internal class StudentServices
     {
         ErrorMessages errors = new ErrorMessages();
-        Course course;
-            public void AddStudent()
+        
+            public void AddStudent(Course course)
             {
                 Console.WriteLine("Write the group name which you want to add a student to:");
                 string groupName = Console.ReadLine();
@@ -63,7 +63,7 @@ namespace task1
 
         
 
-        public void RemoveStudent()
+        public void RemoveStudent(Course course)
         {
             Console.WriteLine("Write the group name from which you want to remove a student:");
             string groupName = Console.ReadLine();
@@ -80,7 +80,7 @@ namespace task1
                 Console.WriteLine("No students in the group.");
                 return;
             }
-
+            
             foreach (var student in groupp.Students)
             {
                 Console.WriteLine($"Id: {student.Id}, Name: {student.Name}");
@@ -105,7 +105,7 @@ namespace task1
         }
 
 
-        public void EditStudentInGroup()
+        public void EditStudentInGroup(Course course)
         {
             Console.WriteLine("Write the group name in which you want to edit a student:");
             string groupName = Console.ReadLine();
@@ -167,7 +167,7 @@ namespace task1
             Console.WriteLine("Student information updated.");
         }
 
-        public void ViewStudentsInGroup()
+        public void ViewStudentsInGroup(Course course)
         {
             Console.WriteLine("Write the group name to view its students:");
             string groupName = Console.ReadLine();
@@ -191,7 +191,7 @@ namespace task1
             }
         }
 
-        public void ViewAllStudentsInCourse()
+        public void ViewAllStudentsInCourse(Course course)
         {
             var allStudents = course.Groups.SelectMany(g => g.Students).ToList();
 
@@ -207,7 +207,7 @@ namespace task1
             }
         }
 
-        public void SearchStudents()
+        public void SearchStudents(Course course)
         {
             Console.WriteLine("Enter the string to search for in student names:");
             string searchString = Console.ReadLine();

@@ -64,9 +64,9 @@ namespace task1
 
             if (course.Groups.Any(g => g.Name == groupName))
             {
-                for (int i = 0; i < course.Groups.Count(); i++)
+                    foreach(var group in course.Groups)
                 {
-                    Group group = course.Groups[i];
+                    
                     if (group.Name == groupName)
                     {
                         course.Groups.Remove(group);
@@ -88,8 +88,8 @@ namespace task1
             if (course.Groups.Any(g => g.Name == groupName))
             {
                 for (int i = 0; i < course.Groups.Count(); i++)
+                foreach(var group in course.Groups)
                 {
-                    Group group = course.Groups[i];
                     if (group.Name == groupName)
                     {
                         Console.WriteLine("Which you want to change? Write 1 for name and 2 for limit");

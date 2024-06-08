@@ -9,7 +9,7 @@ namespace task1
     internal class Course
     {
         public string Name { get; set; }
-        public List<Group> Groups = new List<Group>();
+        public CustomList<Group> Groups = new CustomList<Group>();
         public Course(string name)
         {
             

@@ -13,7 +13,7 @@ namespace task1
         public string Name { get; set; }
 
         public int Limit {  get; set; }
-        public List<Student> Students { get; set; }
+        public CustomList<Student> Students = new CustomList<Student>();
         public Group(string name, int limit)
         {
             Name = name;
