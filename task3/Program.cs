@@ -12,34 +12,36 @@ class Program
 
         while (true)
         {
-            Console.WriteLine("Menu:");
+            Console.WriteLine("-----Menu-----");
             Console.WriteLine("1. Add doctor");
-            Console.WriteLine("2. View all doctors");
-            Console.WriteLine("3. Schedule appointment");
-            Console.WriteLine("4. View appointments of doctor");
+            Console.WriteLine("2. View doctors");
+            Console.WriteLine("3. Create appointment");
+            Console.WriteLine("4. Show appointments of doctor");
             Console.WriteLine("5. Exit");
-            Console.WriteLine("Enter your choice:");
+            Console.WriteLine("Choice:");
 
+            int lastChoice;
             string choice = Console.ReadLine();
+            bool isTrue = int.TryParse(choice, out lastChoice);
 
-            switch (choice)
+            switch (lastChoice)
             {
-                case "1":
+                case 1:
                     AddDoctor(hospital);
                     break;
-                case "2":
+                case 2:
                     ViewAllDoctors(hospital);
                     break;
-                case "3":
+                case 3:
                     ScheduleAppointment(hospital);
                     break;
-                case "4":
+                case 4:
                     ViewAppointmentsOfDoctor(hospital);
                     break;
-                case "5":
+                case 5:
                     return;
                 default:
-                    Console.WriteLine("Invalid choice, please try again.");
+                    Console.WriteLine("Invalid choice");
                     break;
             }
         }
@@ -47,25 +49,20 @@ class Program
 
     static void AddDoctor(Hospital hospital)
     {
-        Console.WriteLine("Enter doctor's name:");
+        Console.WriteLine("Enter name");
         string name = Console.ReadLine();
 
         hospital.AddDoctor(new Doctor { Name = name });
-        Console.WriteLine($"Doctor {name} added successfully.");
+        Console.WriteLine("Added successfully.");
     }
 
     static void ViewAllDoctors(Hospital hospital)
     {
-        if (hospital.Doctors.Count == 0)
-        {
-            Console.WriteLine("No doctors available.");
-            return;
-        }
 
-        Console.WriteLine("Doctors:");
+        
         foreach (var doctor in hospital.Doctors)
         {
-            Console.WriteLine($"- {doctor.Name}");
+            Console.WriteLine(doctor.Name);
         }
     }
 
@@ -77,30 +74,30 @@ class Program
 
         if (doctor == null)
         {
-            Console.WriteLine("Doctor not found.");
+            Console.WriteLine("There are not such as doctor in this hospital");
             return;
         }
 
-        Console.WriteLine("Enter patient name:");
+        Console.WriteLine("Enter patient's name:");
         string patientName = Console.ReadLine();
 
-        Console.WriteLine("Enter appointment date and time (yyyy-MM-dd HH:mm):");
+        Console.WriteLine("Enter appointment date and time");
         DateTime appointmentDate;
         if (!DateTime.TryParse(Console.ReadLine(), out appointmentDate))
         {
-            Console.WriteLine("Invalid date and time format.");
+            Console.WriteLine("Invalid input");
             return;
         }
         TimeSpan appointmentDuration = TimeSpan.FromHours(1);
         if (doctor.Appointments.Any(a => a.Date < appointmentDate + appointmentDuration && a.Date + appointmentDuration > appointmentDate))
         {
-            Console.WriteLine("This time slot is already taken. Please choose a different time.");
+            Console.WriteLine("This time is unavailable");
             return;
         }
         
 
         doctor.Appointments.Add(new Appointment { PatientName = patientName, Date = appointmentDate });
-        Console.WriteLine("Appointment scheduled successfully.");
+        Console.WriteLine("Appointment selected.");
     }
 
     static void ViewAppointmentsOfDoctor(Hospital hospital)
@@ -115,16 +112,9 @@ class Program
             return;
         }
 
-        if (doctor.Appointments.Count == 0)
-        {
-            Console.WriteLine("No appointments found for this doctor.");
-            return;
-        }
-
-        Console.WriteLine($"Appointments for Dr. {doctor.Name}:");
         foreach (var appointment in doctor.Appointments)
         {
-            Console.WriteLine($"- {appointment.PatientName} at {appointment.Date}");
+            Console.WriteLine($" {appointment.PatientName} , {appointment.Date}");
         }
     }
 }
